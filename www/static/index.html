@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML 5 Boilerplate</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+  </head>
+  <body>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <!-- have a button POST a click via AJAX -->
+    <button hx-post="/clicked" hx-swap="outerHTML">Click Me</button>
+
+    <button hx-get="/replaced" hx-swap="innerHTML">Replace this text</button>
+
+    <div
+      hx-get="/replaced"
+      hx-trigger="click"
+      hx-target="#parent-div"
+      hx-swap="outerHTML"
+    >
+      Click Me!
+    </div>
+    <form id="form" hx-encoding="multipart/form-data" hx-post="/upload">
+      <input type="file" name="file" />
+      <button>Upload</button>
+      <progress id="progress" value="0" max="100"></progress>
+    </form>
+
+    <script>
+      htmx.on('#form', 'htmx:xhr:progress', function(evt) {
+        htmx.find('#progress').setAttribute('value', evt.detail.loaded/evt.detail.total * 100)
+      });
+  </script>
+
+    <div id="parent-div"></div>
+  </body>
+</html>
