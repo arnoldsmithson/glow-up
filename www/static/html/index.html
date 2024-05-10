@@ -9,6 +9,7 @@
   </head>
   <body>
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="../js/utils.js"></script>
     <!-- have a button POST a click via AJAX -->
     <button hx-post="/clicked" hx-swap="outerHTML">Click Me</button>
 
@@ -22,17 +23,33 @@
     >
       Click Me!
     </div>
-    <form id="form" hx-encoding="multipart/form-data" hx-post="/upload">
+    <form
+      id="form"
+      hx-encoding="multipart/form-data"
+      hx-post="/upload"
+      hx-target="#file-box"
+      hx-swap="innerHTML"
+    >
       <input type="file" name="file" />
       <button>Upload</button>
       <progress id="progress" value="0" max="100"></progress>
     </form>
 
+    <div id="file-box"></div>
+
+    <div
+      id="thumbnail-box"
+      hx-get="getThumbnailByUser()"
+      hx-swap="innerHTML"
+    ></div>
+
     <script>
-      htmx.on('#form', 'htmx:xhr:progress', function(evt) {
-        htmx.find('#progress').setAttribute('value', evt.detail.loaded/evt.detail.total * 100)
+      htmx.on("#form", "htmx:xhr:progress", function (evt) {
+        htmx
+          .find("#progress")
+          .setAttribute("value", (evt.detail.loaded / evt.detail.total) * 100);
       });
-  </script>
+    </script>
 
     <div id="parent-div"></div>
   </body>

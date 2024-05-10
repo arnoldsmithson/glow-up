@@ -1,0 +1,7 @@
+[default.limits]
+form = "64 kB"
+data-form = "10 MiB"
+json = "1 MiB"
+msgpack = "2 MiB"
+"file/jpg" = "5 MiB"
+"file/gif" = "5 MiB"
