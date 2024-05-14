@@ -13,3 +13,7 @@ features = [
     "fast-rng",          # Use a faster (but still sufficiently random) RNG
     "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
 ]
+
+[dependencies.rocket_db_pools]
+version = "0.1.0"
+features = ["sqlx_sqlite"]

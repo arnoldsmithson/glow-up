@@ -1,49 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>HTML 5 Boilerplate</title>
+    <link href="/public/assets/favicon.ico" rel="shortcut icon" />
+    <link rel="stylesheet" type="text/css" href="/public/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/home.css" />
+    <title>Home - Glow Up</title>
     <!-- <link rel="stylesheet" href="style.css" /> -->
   </head>
-  <body>
+  <body id="main">
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
-    <script src="../js/utils.js"></script>
-    <!-- have a button POST a click via AJAX -->
-    <button hx-post="/clicked" hx-swap="outerHTML">Click Me</button>
-
-    <button hx-get="/replaced" hx-swap="innerHTML">Replace this text</button>
-
-    <div
-      hx-get="/replaced"
-      hx-trigger="click"
-      hx-target="#parent-div"
-      hx-swap="outerHTML"
-    >
-      Click Me!
+    <script src="/public/js/utils.js"></script>
+    <div class="titleLogo">
+      <h1>Working Title</h6>
+      <img src="/public/assets/favicon-32x32.png" />
     </div>
-    <form
-      id="form"
-      hx-encoding="multipart/form-data"
-      hx-post="/upload"
-      hx-target="#file-box"
-      hx-swap="innerHTML"
-    >
-      <input type="file" name="file" />
-      <button>Upload</button>
-      <progress id="progress" value="0" max="100"></progress>
-    </form>
+    <!-- have a button POST a click via AJAX -->
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/something">???</a>
+      <a href="/contact">Contact</a>
+      <a href="/about">About</a>
+    </div>
 
-    <div id="file-box"></div>
-
-    <div
-      id="thumbnail-box"
-      hx-get="getThumbnailByUser()"
-      hx-swap="innerHTML"
-    ></div>
-
-    <script>
+    <div id="page-container">
+      <div class="work-container">
+        <div class="gif-making-container">
+          <div class="empty-box"></div>
+          <div
+            id="buttons">
+            <button id="uploads" hx-swap="innerHTML" hx-target="#thumbnail-box" class="folder-button" onClick="replaceContent('uploads')">Uploads</button>
+            <button id="saved" hx-swap="innerHTML" hx-target="#thumbnail-box" class="folder-button" onClick="replaceContent('saved')">Saved</button>
+            <button id="search" hx-swap="innerHTML" hx-target="#thumbnail-box" class="folder-button" onClick="replaceContent('search')">Search</button>
+          </div>
+        </div>
+        <div class="gif-making-container">
+          <div id="work-box"></div>
+          <div
+            id="thumbnail-box"
+            hx-get="getThumbnailByUser()"
+            hx-swap="innerHTML"></div>
+        </div>
+        <div class="upload-form">
+          <div class="empty-box"></div>
+          <form
+            id="form"
+            hx-encoding="multipart/form-data"
+            hx-post="/upload"
+            hx-swap="innerHTML">
+            <input type="file" name="file" />
+            <button>Upload</button>
+            <progress id="progress" value="0" max="100"></progress>
+          </form>
+        </div>
+      </div>
+      <script>
       htmx.on("#form", "htmx:xhr:progress", function (evt) {
         htmx
           .find("#progress")
@@ -51,6 +64,7 @@
       });
     </script>
 
-    <div id="parent-div"></div>
+      <div id="parent-div"></div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,48 @@
+.work-container {
+    margin-top: 50px;
+}
+
+.gif-making-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.upload-form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#thumbnail-box, #work-box{
+    border: 2px solid black;
+    height: 50vh;
+    width: 35%;
+}
+
+#form {
+    width: 35%;
+    text-align: center;
+}
+
+input {
+    width: 200px;
+    text-overflow: ellipsis;
+}
+
+#buttons, .empty-box {
+    width: 35%;
+    font-size: 0;
+}
+
+.folder-button {
+    width: 33.33%;
+    font-size: 16px;
+    height: 40px;
+    gap: 0px;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 0px;
+}
+
+button.active {
+    background-color: blueviolet;
+}
